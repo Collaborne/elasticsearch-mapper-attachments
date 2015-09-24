@@ -6,11 +6,11 @@
 
     <groupId>org.elasticsearch</groupId>
     <artifactId>elasticsearch-mapper-attachments</artifactId>
-    <version>2.7.0</version>
+    <version>2.7.0-collaborne-1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Elasticsearch Mapper Attachment plugin</name>
     <description>The mapper attachments plugin adds the attachment type to Elasticsearch using Apache Tika.</description>
-    <url>https://github.com/elastic/elasticsearch-mapper-attachments/</url>
+    <url>https://github.com/Collaborne/elasticsearch-mapper-attachments/</url>
     <inceptionYear>2009</inceptionYear>
     <licenses>
         <license>
@@ -20,9 +20,9 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:git:git@github.com:elastic/elasticsearch-mapper-attachments.git</connection>
-        <developerConnection>scm:git:git@github.com:elastic/elasticsearch-mapper-attachments.git</developerConnection>
-        <url>http://github.com/elastic/elasticsearch-mapper-attachments</url>
+        <connection>scm:git:git@github.com:Collaborne/elasticsearch-mapper-attachments.git</connection>
+        <developerConnection>scm:git:git@github.com:Collaborne/elasticsearch-mapper-attachments.git</developerConnection>
+        <url>http://github.com/Collaborne/elasticsearch-mapper-attachments</url>
     </scm>
 
     <parent>
@@ -84,6 +84,13 @@
     </dependencies>
 
     <build>
+        <extensions>
+            <extension>
+                <groupId>org.kuali.maven.wagons</groupId>
+                <artifactId>maven-s3-wagon</artifactId>
+                <version>1.2.1</version>
+            </extension>
+        </extensions>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -140,5 +147,21 @@
             <name>Sonatype OSS Snapshots</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
+        <repository>
+            <id>sonatype-releases</id>
+            <name>Sonatype Releases Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/releases</url>
+        </repository>
     </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>collaborne-thirdparty-repository</id>
+            <url>s3://collaborne-repository/maven/thirdparty</url>
+        </repository>
+        <snapshotRepository>
+            <id>collaborne-thirdparty-snapshot-repository</id>
+            <url>s3://collaborne-repository/maven/thirdparty-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
